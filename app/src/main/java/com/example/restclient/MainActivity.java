@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
                     content+="Nombres: "+alum.getNombres()+"\n";
                     content+="Apellidos: "+alum.getApellidos()+"\n";
                     content+="Código: "+alum.getCodigo()+"\n";
+                    content+="Correo: "+alum.getCorreo()+"\n";
+                    content+="Password: "+alum.getPassword()+"\n";
                     tv01.append(content);
                 }
             }
