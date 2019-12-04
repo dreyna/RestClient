@@ -5,6 +5,8 @@ public class Alumno {
     private String nombres;
     private String apellidos;
     private String codigo;
+    private String correo;
+    private String password;
 
     public int getIdalumno() {
         return idalumno;
@@ -36,5 +38,21 @@ public class Alumno {
 
     public void setCodigo(String codigo) {
         this.codigo = codigo;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

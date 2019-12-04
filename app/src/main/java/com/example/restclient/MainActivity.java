@@ -14,17 +14,19 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tv01;
+    private TextView tv01, tv02, tv03;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv01 = (TextView) findViewById(R.id.tvdatos);
+        tv01 = (TextView) findViewById(R.id.tvnombre);
+        tv02 = (TextView) findViewById(R.id.tvcodigo);
+        tv03 = (TextView) findViewById(R.id.tvcorreo);
         getPosts();
     }
     private void getPosts(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.21.11:4000/alumno/")
+                .baseUrl("http://192.168.74.17:4000/alumno/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonApi jsonApi = retrofit.create(JsonApi.class);
@@ -38,14 +40,12 @@ public class MainActivity extends AppCompatActivity {
                 }
                 List<Alumno> postsList = response.body();
                 for(Alumno alum: postsList){
-                    String content = "";
-                    content+="userId: "+alum.getIdalumno()+"\n";
-                    content+="Nombres: "+alum.getNombres()+"\n";
-                    content+="Apellidos: "+alum.getApellidos()+"\n";
-                    content+="Código: "+alum.getCodigo()+"\n";
-                    content+="Correo: "+alum.getCorreo()+"\n";
-                    content+="Password: "+alum.getPassword()+"\n";
-                    tv01.append(content);
+                    String nombres = "Nombres: "+alum.getNombres()+" "+alum.getApellidos();
+                    String codigo = "Código: "+alum.getCodigo();
+                    String correo ="Correo: "+alum.getCorreo();
+                    tv01.append(nombres);
+                    tv02.append(codigo);
+                    tv03.append(correo);
                 }
             }
 
