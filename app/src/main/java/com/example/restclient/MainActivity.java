@@ -1,10 +1,13 @@
 package com.example.restclient;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import retrofit2.Call;
@@ -14,19 +17,23 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
-    private TextView tv01, tv02, tv03;
+    private RecyclerView recyclerView;
+    private RecyclerView.Adapter adapter;
+    private List<Alumno> lista;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        tv01 = (TextView) findViewById(R.id.tvnombre);
-        tv02 = (TextView) findViewById(R.id.tvcodigo);
-        tv03 = (TextView) findViewById(R.id.tvcorreo);
+        recyclerView =(RecyclerView)findViewById(R.id.recyclerid);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        lista = new ArrayList<>();
         getPosts();
     }
     private void getPosts(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.74.17:4000/alumno/")
+                .baseUrl("http://192.168.0.186:5000/alumnos/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonApi jsonApi = retrofit.create(JsonApi.class);
@@ -35,23 +42,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<List<Alumno>> call, Response<List<Alumno>> response) {
                 if(!response.isSuccessful()){
-                    tv01.setText("Codigo: "+response.code());
                     return;
                 }
-                List<Alumno> postsList = response.body();
-                for(Alumno alum: postsList){
-                    String nombres = "Nombres: "+alum.getNombres()+" "+alum.getApellidos();
-                    String codigo = "Código: "+alum.getCodigo();
-                    String correo ="Correo: "+alum.getCorreo();
-                    tv01.append(nombres);
-                    tv02.append(codigo);
-                    tv03.append(correo);
-                }
+                List<Alumno> lista = response.body();
+                adapter = new AdapterAlumno(lista,getApplicationContext());
+                recyclerView.setAdapter(adapter);
             }
 
             @Override
             public void onFailure(Call<List<Alumno>> call, Throwable t) {
-                tv01.setText(t.getMessage());
+
             }
         });
     }
