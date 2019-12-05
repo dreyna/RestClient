@@ -8,6 +8,15 @@ public class Alumno {
     private String correo;
     private String password;
 
+    public Alumno(int idalumno, String nombres, String apellidos, String codigo, String correo, String password) {
+        this.idalumno = idalumno;
+        this.nombres = nombres;
+        this.apellidos = apellidos;
+        this.codigo = codigo;
+        this.correo = correo;
+        this.password = password;
+    }
+
     public int getIdalumno() {
         return idalumno;
     }
