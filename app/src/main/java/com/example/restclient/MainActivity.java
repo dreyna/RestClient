@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getPosts(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.0.186:5000/alumnos/")
+                .baseUrl("http://192.168.74.17:4000/alumno/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonApi jsonApi = retrofit.create(JsonApi.class);
