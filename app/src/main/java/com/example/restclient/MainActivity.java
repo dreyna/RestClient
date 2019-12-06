@@ -1,10 +1,13 @@
 package com.example.restclient;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -33,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
     }
     private void getPosts(){
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.74.17:4000/alumno/")
+                //.baseUrl("http://192.168.74.17:4000/alumno/")
+                .baseUrl("http://10.38.7.238:5000/alumnos/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         JsonApi jsonApi = retrofit.create(JsonApi.class);
