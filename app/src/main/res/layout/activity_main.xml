@@ -5,12 +5,21 @@
     android:layout_height="match_parent"
     android:padding="30dp"
     tools:context=".MainActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Docentes"
+        android:textColor="#F70C0C"
+        android:textSize="20dp"
+        android:gravity="center_horizontal"
+        android:layout_marginBottom="20dp">
+    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recyclerid"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="30dp">
 
     </androidx.recyclerview.widget.RecyclerView>
 

@@ -1,4 +1,4 @@
-package com.example.restclient;
+package com.example.restclient.Entity;
 
 public class Alumno {
     private int idalumno;
