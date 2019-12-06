@@ -5,7 +5,12 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.TextView;
+
+import com.example.restclient.Entity.Alumno;
+import com.example.restclient.adapter.AdapterAlumno;
+import com.example.restclient.retrofit.APIUtils;
+import com.example.restclient.retrofit.JsonApi;
+import com.example.restclient.retrofit.Urls;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,15 +21,17 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Urls {
     private RecyclerView recyclerView;
     private RecyclerView.Adapter adapter;
+    private JsonApi jsonApi;
     private List<Alumno> lista;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        jsonApi = APIUtils.getAlumnoService();
         recyclerView =(RecyclerView)findViewById(R.id.recyclerid);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
@@ -32,11 +39,6 @@ public class MainActivity extends AppCompatActivity {
         getPosts();
     }
     private void getPosts(){
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://192.168.74.17:4000/alumno/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
-        JsonApi jsonApi = retrofit.create(JsonApi.class);
         Call<List<Alumno>> call = jsonApi.getPost();
         call.enqueue(new Callback<List<Alumno>>() {
             @Override
