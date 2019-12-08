@@ -1,17 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="30dp"
+    android:orientation="vertical"
     tools:context=".MainActivity">
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lista de Alumnos"
+        android:textColor="#FFF"
+        android:textSize="24dp"
+        android:padding="5dp"
+        android:gravity="center_horizontal"
+        android:background="@color/colorPrimary"
+        android:fontFamily="cursive"
+        android:layout_marginBottom="10dp">
+    </TextView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:id="@+id/recyclerid"
-        android:layout_height="match_parent" >
-
+        android:layout_height="wrap_content">
     </androidx.recyclerview.widget.RecyclerView>
-
-</RelativeLayout>
+</LinearLayout>

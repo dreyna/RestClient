@@ -1,20 +1,31 @@
-package com.example.restclient;
+package com.example.restclient.Entity;
+
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
 public class Alumno {
+    @SerializedName("idalumno")
+    @Expose
     private int idalumno;
+    @SerializedName("nombres")
+    @Expose
     private String nombres;
+    @SerializedName("apellidos")
+    @Expose
     private String apellidos;
+    @SerializedName("codigo")
+    @Expose
     private String codigo;
+    @SerializedName("correo")
+    @Expose
     private String correo;
-    private String password;
 
-    public Alumno(int idalumno, String nombres, String apellidos, String codigo, String correo, String password) {
+    public Alumno(int idalumno, String nombres, String apellidos, String codigo, String correo) {
         this.idalumno = idalumno;
         this.nombres = nombres;
         this.apellidos = apellidos;
         this.codigo = codigo;
         this.correo = correo;
-        this.password = password;
     }
 
     public int getIdalumno() {
@@ -57,11 +68,4 @@ public class Alumno {
         this.correo = correo;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }
